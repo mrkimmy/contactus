@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContactUs.Models
 {
-    class Ticket
+    public class Ticket
     {
         public string Id { get; set; }
 
