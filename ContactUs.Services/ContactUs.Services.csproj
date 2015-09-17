@@ -41,6 +41,20 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ContactUs.DataAccess\ContactUs.DataAccess.csproj">
+      <Project>{9d1611c0-8e27-41dd-a7c1-87816c78833a}</Project>
+      <Name>ContactUs.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContactUs.Models\ContactUs.Models.csproj">
+      <Project>{39170d5d-aeb4-4836-ab5b-2bc0597a0de5}</Project>
+      <Name>ContactUs.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GFX.Core\GFX.Core.csproj">
+      <Project>{d26269e5-fa64-4f83-85fe-2cb282b9d1d7}</Project>
+      <Name>GFX.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

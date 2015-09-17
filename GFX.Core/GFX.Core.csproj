@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9D1611C0-8E27-41DD-A7C1-87816C78833A}</ProjectGuid>
+    <ProjectGuid>{D26269E5-FA64-4F83-85FE-2CB282B9D1D7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ContactUs.DataAccess</RootNamespace>
-    <AssemblyName>ContactUs.DataAccess</AssemblyName>
+    <RootNamespace>GFX.Core</RootNamespace>
+    <AssemblyName>GFX.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,16 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ContactUs.Models\ContactUs.Models.csproj">
-      <Project>{39170d5d-aeb4-4836-ab5b-2bc0597a0de5}</Project>
-      <Name>ContactUs.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GFX.Core\GFX.Core.csproj">
-      <Project>{d26269e5-fa64-4f83-85fe-2cb282b9d1d7}</Project>
-      <Name>GFX.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
