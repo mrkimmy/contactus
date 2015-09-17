@@ -1,3 +1,4 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/m2ejaeklx2wuw6cx?svg=true)](https://ci.appveyor.com/project/mrkimmy/contactus)
 ## ContactUs
 
 The contactus system allows users to post message to administrators to start and track conversation.
