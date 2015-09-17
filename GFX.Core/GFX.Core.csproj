@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FakeRepository_T.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IRepository_T.cs" />
     <Compile Include="IService.cs" />

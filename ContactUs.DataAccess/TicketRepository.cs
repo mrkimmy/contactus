@@ -9,7 +9,7 @@ using ContactUs.Models;
 
 namespace ContactUs.DataAccess
 {
-    class TicketRepository: RepositoryBase<Ticket>
+    public class TicketRepository: RepositoryBase<Ticket>
     {
         //
     }
