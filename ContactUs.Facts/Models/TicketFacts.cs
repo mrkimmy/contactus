@@ -29,9 +29,8 @@ namespace ContactUs.Facts.Models
 
             
             
-            Assert.True(newTicket.CanChange(TicketStatus.Accepted));
-            Assert.True(newTicket.CanChange(TicketStatus.Accepted));
-            Assert.False(newTicket.CanChange(TicketStatus.Closed));
+            Assert.True(newTicket.IsAcceptable);
+            Assert.False(newTicket.IsCloseable);
         }
 
         [Fact]
@@ -40,8 +39,8 @@ namespace ContactUs.Facts.Models
             Ticket newTicket = new Ticket();
             newTicket.Accept();
          
-            Assert.True(newTicket.CanChange(TicketStatus.Closed));
-            Assert.True(newTicket.CanChange(TicketStatus.Rejected));
+            Assert.True(newTicket.IsCloseable);
+            Assert.True(newTicket.IsRejectable);
        
         }
 
@@ -51,9 +50,9 @@ namespace ContactUs.Facts.Models
             Ticket newTicket = new Ticket();
             newTicket.Reject();
 
-            Assert.False(newTicket.CanChange(TicketStatus.New));
-            Assert.False(newTicket.CanChange(TicketStatus.Accepted));
-            Assert.False(newTicket.CanChange(TicketStatus.Closed));
+     
+            Assert.False(newTicket.IsRejectable);
+            Assert.False(newTicket.IsCloseable);
         }
 
         [Fact]
@@ -63,9 +62,9 @@ namespace ContactUs.Facts.Models
             newTicket.Accept();
             newTicket.Close();
 
-            Assert.False(newTicket.CanChange(TicketStatus.New));
-            Assert.False(newTicket.CanChange(TicketStatus.Accepted));
-            Assert.False(newTicket.CanChange(TicketStatus.Rejected));
+            
+            Assert.False(newTicket.IsAcceptable);
+            Assert.False(newTicket.IsRejectable);
         }
     }
 }
