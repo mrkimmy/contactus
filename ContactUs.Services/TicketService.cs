@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using GFX.Core;
 using ContactUs.Models;
+using ContactUs.Models.States;
 namespace ContactUs.Services
 {
     public class TicketService:ServiceBase<App,Ticket>
@@ -27,6 +28,9 @@ namespace ContactUs.Services
             item.Id = generateTicketId();
             item.LastActivityDate = SystemTime.Now();
             item.LastActivityByUser = "unknown?";
+
+            var ticketState = new NewTicketState(item);
+            item.TicketStates.Add(ticketState);
             return base.Add(item);
         }
 

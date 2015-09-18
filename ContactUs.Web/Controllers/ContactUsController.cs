@@ -58,13 +58,43 @@ namespace ContactUs.Web.Controllers
         }
 
         public ActionResult Browse()
-        {;
-        var q = from t in app.Tickets.All()
-                orderby t.LastActivityDate descending
-                select t;
+        {
+            ;
+            var q = from t in app.Tickets.All()
+                    orderby t.LastActivityDate descending
+                    select t;
 
-            var tickets=q.ToList();
+            var tickets = q.ToList();
             return View(tickets);
+        }
+
+        [HttpPost]
+        public ActionResult ChangeStatus(string id, string toStatus)
+        {
+            var ticket = app.Tickets.Find(id);
+            if (ticket == null)
+            {
+                return HttpNotFound();
+            }
+
+            switch (toStatus)
+            {
+                case "Accepted":
+                    ticket.Accept();
+                    break;
+                case "Closed":
+                    ticket.Close();
+                    break;
+                case "Rejected":
+                    ticket.Reject("N/A");
+                    break;
+
+
+            }
+
+            app.SaveChanges();
+            return RedirectToAction("Browse");
+
         }
     }
 }

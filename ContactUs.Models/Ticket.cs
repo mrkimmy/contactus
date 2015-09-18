@@ -37,7 +37,7 @@ namespace ContactUs.Models
         public Ticket()
         {
             TicketStates = new HashSet<TicketState>(); //use HashSet for create table in entityframework
-            ChangeStatus(new NewTicketState(this));
+            //ChangeStatus(new NewTicketState(this));
         }
 
         public TicketStatus Status { get { return CurrentState.Status; } }
@@ -63,24 +63,34 @@ namespace ContactUs.Models
             //CurrentState = state;
         }
 
-
-
-
-
         public void Accept()
         {
+            if (!this.IsAcceptable)
+            {
+                throw new InvalidOperationException();
+            } 
             ChangeStatus(new AccetpedTicketState(this));
         }
 
 
         public void Close()
         {
+            if (!this.IsCloseable)
+            {
+                throw new InvalidOperationException();
+            }
             ChangeStatus(new ClosedTicketState(this));
         }
 
-        public void Reject()
+        public void Reject(string reason)
         {
-            ChangeStatus(new RejectedTicketState(this));
+            if (!this.IsRejectable)
+            {
+                throw new InvalidOperationException();
+            }
+            RejectedTicketState s = new RejectedTicketState();
+            s.Reason = reason;
+            ChangeStatus(s);
         }
 
    

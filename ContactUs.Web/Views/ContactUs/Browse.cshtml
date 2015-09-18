@@ -28,21 +28,18 @@
                 <td>@t.LastActivityDate</td>
                 <td>@t.Status</td>
                 <td>
-                    @if (t.CurrentState.IsAcceptable)
+                    @using (Html.BeginForm("ChangeStatus", "ContactUs", new { id = t.Id }))
                     {
-                        //Html.ActionLink("Accept","Accept","Ticket")
-                        <button type="button" class="btn btn-success">Accept</button>
+                        <button class="btn btn-default" disabled="@(!t.IsAcceptable)" name="toStatus" value="Accepted">
+                            Accept
+                        </button>
+                        <button class="btn btn-default" disabled="@(!t.IsCloseable)" name="toStatus" value="Closed">
+                            Close
+                        </button>
+                        <button class="btn btn-default" disabled="@(!t.IsRejectable)" name="toStatus" value="Rejected">
+                            Reject
+                        </button>
                     }
-                    @if (t.CurrentState.IsCloseable)
-                    {
-                        <button type="button" class="btn btn-primary">Close</button>
-                    }
-                    @if (t.CurrentState.IsRejectable)
-                    {
-                        <button type="button" class="btn btn-danger">Reject</button>
-                    }
-                    
-
                 </td>
             </tr>
         }
