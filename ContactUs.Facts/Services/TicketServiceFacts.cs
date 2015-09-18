@@ -48,6 +48,8 @@ namespace ContactUs.Facts.Services
                     Assert.Equal(dt, ticket.LastActivityDate);
                 }
             }
+
+
         }
     }
 }
