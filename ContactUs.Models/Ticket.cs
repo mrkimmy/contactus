@@ -25,8 +25,8 @@ namespace ContactUs.Models
             get
             {
                 return TicketStates
-                  .OrderByDescending(t => t.Date)
-                  .FirstOrDefault();
+                  .OrderBy(t => t.Date)
+                  .LastOrDefault();
             }
         }
 

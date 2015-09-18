@@ -34,7 +34,7 @@ namespace ContactUs.Models.States
             }
         }
 
-        public NewTicketState()
+        public NewTicketState() :base()
         {
 
         }

@@ -37,7 +37,6 @@ namespace ContactUs.Models.States
 
         public AccetpedTicketState()
         {
-
         }
     }
 }

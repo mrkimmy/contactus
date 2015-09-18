@@ -30,7 +30,7 @@ namespace ContactUs.Models.States
             this.Date = DateTime.Now;
         }
 
-        public TicketState()
+        public TicketState() :this(null)
         {
 
         }
