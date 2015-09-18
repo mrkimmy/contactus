@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ContactUs.Models.States;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ContactUs.Models
 {
@@ -15,50 +18,71 @@ namespace ContactUs.Models
 
         public string Title { get; set; }
         public string Body { get; set; }
-        public TicketStatus Status { get; private set; }
+
+        [Required]
+        public TicketState CurrentState
+        {
+            get
+            {
+                return TicketStates
+                  .OrderByDescending(t => t.Date)
+                  .FirstOrDefault();
+            }
+        }
+
+
+        [InverseProperty("Ticket")]
+        public virtual ICollection<TicketState> TicketStates { get; set; }
+
+        public Ticket()
+        {
+            TicketStates = new HashSet<TicketState>(); //use HashSet for create table in entityframework
+            ChangeStatus(new NewTicketState(this));
+        }
+
+        public TicketStatus Status { get { return CurrentState.Status; } }
+
+        public bool IsAcceptable
+        {
+            get { return CurrentState.IsAcceptable; }
+        }
+
+        public bool IsRejectable
+        {
+            get { return CurrentState.IsRejectable; }
+        }
+
+        public bool IsCloseable
+        {
+            get { return CurrentState.IsCloseable; }
+        }
+
+        internal void ChangeStatus(TicketState state)
+        {
+            TicketStates.Add(state);
+            //CurrentState = state;
+        }
+
+
+
+
 
         public void Accept()
         {
-            if (CanChange(TicketStatus.Accepted))
-            {
-                Status = TicketStatus.Accepted;
-            }
+            ChangeStatus(new AccetpedTicketState(this));
         }
 
 
         public void Close()
         {
-            if (CanChange(TicketStatus.Closed))
-            {
-                Status = TicketStatus.Closed;
-            }
+            ChangeStatus(new ClosedTicketState(this));
         }
 
         public void Reject()
         {
-            if(CanChange(TicketStatus.Rejected))
-            {
-                Status = TicketStatus.Rejected;
-            }
+            ChangeStatus(new RejectedTicketState(this));
         }
 
-        public bool CanChange(TicketStatus status)
-        {
-            switch (Status)
-            {
-                case TicketStatus.New:
-                    if (status == TicketStatus.Accepted) return true;
-                    if (status == TicketStatus.Rejected) return true;
-                    break;
-                case TicketStatus.Accepted:
-                    if (status == TicketStatus.Closed) return true;
-                    if (status == TicketStatus.Rejected) return true;
-                    return false;
-                case TicketStatus.Closed:
-                case TicketStatus.Rejected:
-                    return false;
-            }
-            return false;
-        }
+   
     }
 }

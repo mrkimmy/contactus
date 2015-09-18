@@ -28,16 +28,16 @@
                 <td>@t.LastActivityDate</td>
                 <td>@t.Status</td>
                 <td>
-                    @if (t.CanChange(TicketStatus.Accepted))
+                    @if (t.CurrentState.IsAcceptable)
                     {
                         //Html.ActionLink("Accept","Accept","Ticket")
                         <button type="button" class="btn btn-success">Accept</button>
                     }
-                    @if (t.CanChange(TicketStatus.Closed))
+                    @if (t.CurrentState.IsCloseable)
                     {
                         <button type="button" class="btn btn-primary">Close</button>
                     }
-                    @if (t.CanChange(TicketStatus.Rejected))
+                    @if (t.CurrentState.IsRejectable)
                     {
                         <button type="button" class="btn btn-danger">Reject</button>
                     }

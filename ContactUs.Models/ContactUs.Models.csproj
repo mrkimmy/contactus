@@ -49,6 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="States\AccetpedTicketState.cs" />
+    <Compile Include="States\ClosedTicketState.cs" />
+    <Compile Include="States\NewTicketState.cs" />
+    <Compile Include="States\RejectedTicketState.cs" />
+    <Compile Include="States\TicketState.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="TicketStatus.cs" />
   </ItemGroup>
