@@ -2,4 +2,4 @@ test(){
 alert('test script runner pro');
 }
 
-windows.onload=test;
+window.onload=test;
